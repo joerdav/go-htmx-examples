@@ -1,0 +1,8 @@
+github.com/a-h/templ v0.2.233 h1:EnZqZmtV0YICqWG6MtLNmTcWuFkl2ImyQ63SIpWaM2Y=
+github.com/a-h/templ v0.2.233/go.mod h1:h1DdzFMWVApvTcZBNmM6+mD6EPq6uYkncMNF7zdLj9I=
+github.com/a-h/templ v0.2.234-0.20230416205859-20293271f3c5 h1:NeF/iw7KU9W7CYYJimd5x7ooOXCLrfo8FcHdFPUU+2w=
+github.com/a-h/templ v0.2.234-0.20230416205859-20293271f3c5/go.mod h1:nqma2qb9ViAJOP4MBucyH+SPbOyNDZaRQyusfpK4PjY=
+github.com/yosssi/gohtml v0.0.0-20201013000340-ee4748c638f4 h1:0sw0nJM544SpsihWx1bkXdYLQDlzRflMgFJQ4Yih9ts=
+github.com/yosssi/gohtml v0.0.0-20201013000340-ee4748c638f4/go.mod h1:+ccdNT0xMY1dtc5XBxumbYfOUhmduiGudqaDgD2rVRE=
+golang.org/x/net v0.9.0 h1:aWJ/m6xSmxWBx+V0XRHTlrYrPG56jKsLdTFmsSsCzOM=
+golang.org/x/net v0.9.0/go.mod h1:d48xBJpPfHeWQsugry2m+kC02ZBRGRgulfHnEXEuWns=

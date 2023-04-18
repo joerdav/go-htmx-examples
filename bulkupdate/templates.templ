@@ -1,0 +1,91 @@
+package bulkupdate
+
+import (
+	"fmt"
+
+	"examples/shared"
+)
+
+templ demo(users []user) {
+	<h3 class="subtitle">Select Rows And Activate Or Deactivate Below</h3>
+	<form id="checked-contacts">
+		<table class="table">
+			<thead>
+				<tr>
+					<td></td>
+					<td>Name</td>
+					<td>Email</td>
+					<td>Status</td>
+				</tr>
+			</thead>
+			@tbody(users, map[int]bool{})
+		</table>
+	</form>
+	<div hx-swap="outerHTML" hx-include="#checked-contacts" hx-target="#tbody" class="field is-grouped">
+		<div class="control"><a class="button is-black" hx-put="/bulk-update/activate">Activate</a></div>
+		<div class="control"><a class="button" hx-put="/bulk-update/deactivate">Deactivate</a></div>
+	</div>
+	<style>
+		  .htmx-settling tr.deactivate td {
+		    background: lightcoral;
+		  }
+		  .htmx-settling tr.activate td {
+		    background: darkseagreen;
+		  }
+		  tr td {
+		    transition: all 1.2s;
+		  }
+	</style>
+}
+
+templ tbody(users []user, modified map[int]bool) {
+	<tbody id="tbody">
+		for k, u := range users {
+			<tr
+				if modified[k] && u.active {
+					class="activate"
+				}
+
+				if modified[k] && !u.active {
+					class="deactivate"
+				}
+				>
+				<td><input type="checkbox" name="ids" value={ fmt.Sprint(k) }/></td>
+				<td>{ u.name }</td>
+				<td>{ u.email }</td>
+				<td>
+					if u.active {
+						Active
+					} else {
+						Inactive
+					}
+				</td>
+			</tr>
+		}
+	</tbody>
+}
+
+templ Index(users []user) {
+	@shared.Layout("Bulk Update") {
+		<h2 class="title">Bulk Update</h2>
+		<p>This demo shows how to implement a common pattern where rows are selected and then bulk updated. This is accomplished by putting a form around a table, with checkboxes in the table, and then including the checked values in <code>PUT</code>’s to two different endpoints: <code>activate</code>and <code>deactivate</code>:</p>
+		<pre><code class="language-html">
+	@shared.Raw() {
+		@demo(users)
+	}
+</code></pre>
+		<p>The server will either activate or deactivate the checked users and then rerender the <code>tbody</code>tag with updated rows. It will apply the class <code>activate</code>or <code>deactivate</code>to rows that have been mutated. This allows us to use a bit of CSS to flash a color helping the user see what happened:</p>
+		<pre><code class="language-css">{ `.htmx-settling tr.deactivate td { 
+    background: lightcoral;
+} 
+.htmx-settling tr.activate td { 
+    background: darkseagreen;
+}
+tr td { 
+    transition: all 1.2s;
+}` }</code></pre>
+		<h2 class="title">Demo</h2>
+		@demo(users)
+	}
+}
+

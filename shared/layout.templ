@@ -1,0 +1,50 @@
+package shared
+
+import "os"
+
+templ Layout(title string) {
+	<html>
+		<head>
+			<link href="https://unpkg.com/prismjs@1.29.0/themes/prism-twilight.css" rel="stylesheet"/>
+			<style>
+				.token.number,
+				.token.tag {
+				  all: inherit;
+				  color: hsl(14, 58%, 55%);
+				}
+			</style>
+			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"/>
+			<title>Go htmx examples - { title }</title>
+			<script src="https://unpkg.com/htmx.org@1.8.5"></script>
+			if os.Getenv("DEBUG") == "true" {
+				<style>
+				@keyframes debug {
+					from {outline: 3px solid #FF0000FF;}
+					to {outline: 3px solid #FF000000;}
+				}
+				* {
+					animation-name: debug;
+					animation-duration: 1s;
+				}
+			</style>
+			}
+		</head>
+		<body hx-boost="true">
+			@Nav()
+			<div id="content" class="container p-5 content">
+				{ children... }
+			</div>
+			<script src="https://unpkg.com/prismjs@1.29.0/components/prism-core.min.js"></script>
+			<script src="https://unpkg.com/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+		</body>
+	</html>
+}
+
+templ Nav() {
+	<nav class="navbar is-black has-shadow" role="navigation" aria-label="main navigation">
+		<div class="navbar-brand">
+			<div class="navbar-start"><a class="navbar-item has-text-weight-bold is-size-3" href="/">Go HTMX Examples</a></div>
+		</div>
+	</nav>
+}
+

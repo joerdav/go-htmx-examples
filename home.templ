@@ -1,0 +1,23 @@
+package main
+
+import "examples/shared"
+
+templ Home(examples []Example) {
+	@shared.Layout("Home") {
+		<h2 class="title">Examples:</h2>
+		<table class="table is-fullwidth"><thead>
+	<tr>
+		<th>Pattern</th>
+		<th>Description</th>
+	</tr>
+</thead><tbody>
+	for _, e := range examples {
+		<tr>
+			<td><a href={ templ.SafeURL("/"+e.Slug) }>{ e.Name }</a></td>
+			<td>{ e.Desc }</td>
+		</tr>
+	}
+</tbody></table>
+	}
+}
+

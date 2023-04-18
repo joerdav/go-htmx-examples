@@ -1,0 +1,60 @@
+package clicktoedit
+
+import "examples/shared"
+
+templ Display(u user) {
+	<div hx-target="this" hx-swap="outerHTML">
+		<div><label>First Name</label>: { u.firstName }</div>
+		<div><label>Last Name</label>: { u.lastName }</div>
+		<div><label>Email</label>: { u.email }</div>
+		<button hx-get="/click-to-edit/contact/1/edit" class="button is-black">Click To Edit</button>
+	</div>
+}
+
+templ Form(u user) {
+	<form hx-put="/click-to-edit/contact/1" hx-target="this" hx-swap="outerHTML">
+		<div class="field">
+			<div class="control"><label>First Name</label><input class="input" type="text" name="firstName" value={ u.firstName }/></div>
+		</div>
+		<div class="field">
+			<div class="control"><label>Last Name</label><input class="input" type="text" name="lastName" value={ u.lastName }/></div>
+		</div>
+		<div class="field">
+			<div class="control"><label>Email Address</label><input class="input" type="email" name="email" value={ u.email }/></div>
+		</div>
+		<div class="field is-grouped">
+			<div class="control"><button class="button is-black">Submit</button></div>
+			<div class="control"><button class="button" hx-get="/click-to-edit/contact/1">Cancel</button></div>
+		</div>
+	</form>
+}
+
+templ Index(u user) {
+	@shared.Layout("Click to Edit") {
+		<h2 class="title">Click to Edit</h2>
+		<p>The click to edit pattern provides a way to offer inline editing of all or part of a record without a page refresh.</p>
+		<ul>
+			<li>
+				This pattern starts with a UI that shows the details of a contact. The div has a button that will get the editing UI for the contact from 
+				<code>/contacts/1/edit</code>
+				<pre><code class="language-html">
+	@shared.Raw() {
+		@Display(u)
+	}
+</code></pre>
+			</li>
+			<li>
+				This returns a form that can be used to edit the contact
+				<pre><code class="language-html">
+	@shared.Raw() {
+		@Form(u)
+	}
+</code></pre>
+			</li>
+			<li>The form issues a <code>PUT</code>back to <code>/contacts/1</code>, following the usual REST-ful pattern.</li>
+		</ul>
+		<h2 class="title">Demo</h2>
+		@Display(u)
+	}
+}
+
