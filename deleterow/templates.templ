@@ -1,0 +1,54 @@
+package deleterow
+
+import "examples/shared"
+
+templ demo() {
+	<style>
+		tr.htmx-swapping td {
+		  opacity: 0;
+		  transition: opacity 1s ease-out;
+		}
+	</style>
+	<table class="table"><thead>
+	<tr>
+		<th>Name</th>
+		<th>Email</th>
+		<th>Status</th>
+		<th></th>
+	</tr>
+</thead><tbody hx-confirm="Are you sure?" hx-target="closest tr" hx-swap="outerHTML swap:1s">
+	<tr>
+		<td>Joe Smith</td>
+		<td>joe@smith.org</td>
+		<td>Active</td>
+		<td><button class="button is-red" hx-delete="/delete-row/contact/0">Delete</button></td>
+	</tr>
+	<tr>
+		<td>Angie MacDowell</td>
+		<td>angie@macdowell.org</td>
+		<td>Active</td>
+		<td><button class="button is-red" hx-delete="/delete-row/contact/1">Delete</button></td>
+	</tr>
+	<tr>
+		<td>Fuqua Tarkenton</td>
+		<td>fuqua@tarkenton.org</td>
+		<td>Active</td>
+		<td><button class="button is-red" hx-delete="/delete-row/contact/2">Delete</button></td>
+	</tr>
+	<tr>
+		<td>Kim Yee</td>
+		<td>kim@yee.org</td>
+		<td>Inactive</td>
+		<td><button class="button is-red" hx-delete="/delete-row/contact/3">Delete</button></td>
+	</tr>
+</tbody></table>
+}
+
+templ Index() {
+	@shared.Layout("Delete Row") {
+		<h2 class="title">Delete Row</h2>
+		<h2 class="title">Demo</h2>
+		@demo()
+	}
+}
+

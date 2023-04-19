@@ -4,6 +4,7 @@ import (
 	"examples/bulkupdate"
 	"examples/clicktoedit"
 	"examples/clicktoload"
+	"examples/deleterow"
 	"log"
 	"net/http"
 
@@ -50,5 +51,11 @@ var examples = []Example{
 		Desc:     "Demonstrates clicking to load more rows in a table",
 		Slug:     "click-to-load",
 		Handlers: clicktoload.Handlers,
+	},
+	{
+		Name:     "Delete Row",
+		Desc:     "Demonstrates row deletion in a table",
+		Slug:     "delete-row",
+		Handlers: deleterow.Handlers,
 	},
 }
