@@ -1,0 +1,52 @@
+package clicktoload
+
+import (
+	"fmt"
+
+	"examples/shared"
+)
+
+templ demo(users []user, page int) {
+	<table class="table"><thead>
+	<tr>
+		<td>Name</td>
+		<td>Email</td>
+		<td>ID</td>
+	</tr>
+</thead><tbody>
+	@tbody(users, page)
+</tbody></table>
+}
+
+templ tbody(users []user, page int) {
+	for _, u := range users {
+		<tr>
+			<td>{ u.name }</td>
+			<td>{ u.email }</td>
+			<td>{ u.id }</td>
+		</tr>
+	}
+	@replaceMe(page)
+}
+
+templ replaceMe(page int) {
+	<tr id="replaceMe">
+		<td colspan="3"><button class="button is-black" hx-get={ "/click-to-load/contacts/?page="+fmt.Sprint(page+1) } hx-target="#replaceMe" hx-swap="outerHTML">Load More Agents...</button></td>
+	</tr>
+}
+
+templ Index(users []user) {
+	@shared.Layout("Click to Load") {
+		<h2 class="title">Click to Load</h2>
+		<p>This example shows how to implement click-to-load the next page in a table of data. The crux of the demo is the final row:</p>
+		<pre><code class="language-html">
+	@shared.Raw() {
+		@replaceMe(1)
+	}
+</code></pre>
+		<p>This row contains a button that will replace the entire row with the next page of results (which will contain a button to load the next page of results). And so on.</p>
+		<h2 class="title">Demo</h2>
+		@demo(users, 1)
+	}
+}
+

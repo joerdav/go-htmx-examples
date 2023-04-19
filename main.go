@@ -3,6 +3,7 @@ package main
 import (
 	"examples/bulkupdate"
 	"examples/clicktoedit"
+	"examples/clicktoload"
 	"log"
 	"net/http"
 
@@ -43,5 +44,11 @@ var examples = []Example{
 		Desc:     "Demonstrates bulk updating of multiple rows of data",
 		Slug:     "bulk-update",
 		Handlers: bulkupdate.Handlers,
+	},
+	{
+		Name:     "Click to Load",
+		Desc:     "Demonstrates clicking to load more rows in a table",
+		Slug:     "click-to-load",
+		Handlers: clicktoload.Handlers,
 	},
 }
