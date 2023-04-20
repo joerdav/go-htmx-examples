@@ -1,0 +1,45 @@
+package editrow
+
+import (
+	"fmt"
+
+	"examples/shared"
+)
+
+templ demo(users []user) {
+	<table class="table"><thead>
+	<tr>
+		<th>Name</th>
+		<th>Email</th>
+		<th></th>
+	</tr>
+</thead><tbody hx-target="closest tr" hx-swap="outerHTML">
+	for i, u := range users {
+		@row(i, u)
+	}
+</tbody></table>
+}
+
+templ row(id int, u user) {
+	<tr>
+		<td>{ u.name }</td>
+		<td>{ u.email }</td>
+		<td><button class="button" hx-get={ fmt.Sprintf("/edit-row/edit/%d", id) }>Edit</button></td>
+	</tr>
+}
+
+templ form(id int, u user) {
+	<tr hx-trigger="cancel" class="editing" hx-get={ fmt.Sprintf("/edit-row/contact/%d", id) }>
+		<td><input name="name" value={ u.name }/></td>
+		<td><input name="email" value={ u.email }/></td>
+		<td><button class="button" hx-get={ fmt.Sprintf("/edit-row/contact/%d", id) }>Cancel</button><button class="button is-black" hx-put={ fmt.Sprintf("/edit-row/contact/%d", id) } hx-include="closest tr">Save</button></td>
+	</tr>
+}
+
+templ Index(users []user) {
+	@shared.Layout("Delete Row") {
+		<h2 class="title">Edit Row</h2>
+		@demo(users)
+	}
+}
+

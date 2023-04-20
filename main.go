@@ -5,6 +5,7 @@ import (
 	"examples/clicktoedit"
 	"examples/clicktoload"
 	"examples/deleterow"
+	"examples/editrow"
 	"log"
 	"net/http"
 
@@ -57,5 +58,11 @@ var examples = []Example{
 		Desc:     "Demonstrates row deletion in a table",
 		Slug:     "delete-row",
 		Handlers: deleterow.Handlers,
+	},
+	{
+		Name:     "Edit Row",
+		Desc:     "Demonstrates how to edit rows in a table",
+		Slug:     "edit-row",
+		Handlers: editrow.Handlers,
 	},
 }

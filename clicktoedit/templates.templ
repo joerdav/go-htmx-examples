@@ -32,28 +32,6 @@ templ Form(u user) {
 templ Index(u user) {
 	@shared.Layout("Click to Edit") {
 		<h2 class="title">Click to Edit</h2>
-		<p>The click to edit pattern provides a way to offer inline editing of all or part of a record without a page refresh.</p>
-		<ul>
-			<li>
-				This pattern starts with a UI that shows the details of a contact. The div has a button that will get the editing UI for the contact from 
-				<code>/contacts/1/edit</code>
-				<pre><code class="language-html">
-	@shared.Raw() {
-		@Display(u)
-	}
-</code></pre>
-			</li>
-			<li>
-				This returns a form that can be used to edit the contact
-				<pre><code class="language-html">
-	@shared.Raw() {
-		@Form(u)
-	}
-</code></pre>
-			</li>
-			<li>The form issues a <code>PUT</code>back to <code>/contacts/1</code>, following the usual REST-ful pattern.</li>
-		</ul>
-		<h2 class="title">Demo</h2>
 		@Display(u)
 	}
 }
