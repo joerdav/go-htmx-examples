@@ -6,6 +6,7 @@ import (
 	"examples/clicktoload"
 	"examples/deleterow"
 	"examples/editrow"
+	"examples/inlinevalidation"
 	"examples/lazyload"
 	"log"
 	"net/http"
@@ -71,5 +72,11 @@ var examples = []Example{
 		Desc:     "Demonstrates how to lazy load content",
 		Slug:     "lazy-loading",
 		Handlers: lazyload.Handlers,
+	},
+	{
+		Name:     "Inline Validation",
+		Desc:     "Demonstrates how to do inline field validation",
+		Slug:     "inline-validation",
+		Handlers: inlinevalidation.Handlers,
 	},
 }

@@ -1,0 +1,36 @@
+package inlinevalidation
+
+import 	"examples/shared"
+
+templ demo() {
+	<form hx-post="/inline-validation/contact">
+		@inp(fields["email"], "email", "", nil)
+		@inp(fields["firstName"], "firstName", "", nil)
+		@inp(fields["lastName"], "lastName", "", nil)
+		<div class="field">
+			<div class="control"><button class="button is-link">Submit</button></div>
+		</div>
+	</form>
+}
+
+templ inp(f field, name, value string, validation error) {
+	<div hx-target="this" hx-swap="outerHTML" class="field">
+		<label class="label">{ f.text }</label>
+		<div class="control"><input class="input"
+	if validation != nil {
+		class="is-danger"
+	}
+	name={ name } value={ value } hx-post={ "/inline-validation/validate/"+name }/></div>
+		if validation != nil {
+			<p class="help is-danger">{ validation.Error() }</p>
+		}
+	</div>
+}
+
+templ Index() {
+	@shared.Layout("Inline Validation") {
+		<h2 class="title">Inline Validation</h2>
+		@demo()
+	}
+}
+
