@@ -1,0 +1,27 @@
+package lazyload
+
+import 	"examples/shared"
+
+templ demo() {
+	<style>
+	.htmx-settling img {
+	  opacity: 0;
+	}
+	img {
+	 transition: opacity 300ms ease-in;
+	}
+	</style>
+	<div hx-get="/lazy-loading/graph" hx-trigger="load"><img alt="Result loading..." class="htmx-indicator" width="150" src="/lazy-loading/bars.svg"/></div>
+}
+
+templ graphImage() {
+	<img alt="Tokyo Climate" src="/lazy-loading/tokyo.png"/>
+}
+
+templ Index() {
+	@shared.Layout("Lazy Loading") {
+		<h2 class="title">Lazy Loading</h2>
+		@demo()
+	}
+}
+

@@ -6,6 +6,7 @@ import (
 	"examples/clicktoload"
 	"examples/deleterow"
 	"examples/editrow"
+	"examples/lazyload"
 	"log"
 	"net/http"
 
@@ -64,5 +65,11 @@ var examples = []Example{
 		Desc:     "Demonstrates how to edit rows in a table",
 		Slug:     "edit-row",
 		Handlers: editrow.Handlers,
+	},
+	{
+		Name:     "Lazy Loading",
+		Desc:     "Demonstrates how to lazy load content",
+		Slug:     "lazy-loading",
+		Handlers: lazyload.Handlers,
 	},
 }
