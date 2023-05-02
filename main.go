@@ -4,6 +4,7 @@ import (
 	"examples/bulkupdate"
 	"examples/clicktoedit"
 	"examples/clicktoload"
+	"examples/csrf"
 	"examples/deleterow"
 	"examples/editrow"
 	"examples/inlinevalidation"
@@ -37,6 +38,12 @@ type Example struct {
 }
 
 var examples = []Example{
+	{
+		Name:     "CSRF Protection",
+		Desc:     "Demonstrates how to do CSRF Protection",
+		Slug:     "csrf",
+		Handlers: csrf.Handlers,
+	},
 	{
 		Name:     "Click To Edit",
 		Desc:     "Demonstrates inline editing of a data object",

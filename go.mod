@@ -9,4 +9,7 @@ require (
 	github.com/yosssi/gohtml v0.0.0-20201013000340-ee4748c638f4
 )
 
-require golang.org/x/net v0.9.0 // indirect
+require (
+	github.com/justinas/nosurf v1.1.1 // indirect
+	golang.org/x/net v0.9.0 // indirect
+)
