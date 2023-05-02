@@ -572,7 +572,7 @@ func Form(u user) templ.Component {
 		if err != nil {
 			return err
 		}
-		_, err = templBuffer.WriteString(" hx-get=\"/click-to-edit/contact/1\"")
+		_, err = templBuffer.WriteString(" hx-get=\"/click-to-edit\"")
 		if err != nil {
 			return err
 		}

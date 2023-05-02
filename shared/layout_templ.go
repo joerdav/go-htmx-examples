@@ -169,16 +169,7 @@ if err != nil {
 			return err
 		}
 		// Element (standard)
-		_, err = templBuffer.WriteString("<body")
-		if err != nil {
-			return err
-		}
-		// Element Attributes
-		_, err = templBuffer.WriteString(" hx-boost=\"true\"")
-		if err != nil {
-			return err
-		}
-		_, err = templBuffer.WriteString(">")
+		_, err = templBuffer.WriteString("<body>")
 		if err != nil {
 			return err
 		}

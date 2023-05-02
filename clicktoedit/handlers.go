@@ -17,6 +17,7 @@ var demoUser user = user{
 
 func Handlers(prefix string, mux *http.ServeMux) {
 	mux.HandleFunc(prefix+"/", index)
+	mux.HandleFunc(prefix, index)
 	mux.HandleFunc(prefix+"/contact/1", putUser)
 	mux.HandleFunc(prefix+"/contact/1/edit", editForm)
 }
